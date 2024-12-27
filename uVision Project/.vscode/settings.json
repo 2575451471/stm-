@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "pic.h": "c",
+        "lcdfont.h": "c",
+        "oledfont.h": "c",
+        "oled.h": "c",
+        "spi.h": "c",
+        "rf2g4.h": "c",
+        "ugui.h": "c",
+        "ugui_config.h": "c",
+        "mk_menu.h": "c",
+        "bsp_si24r1.h": "c"
+    }
+}

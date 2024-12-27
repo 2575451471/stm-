@@ -1,0 +1,10 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "*.ndjson": "jsonl",
+        "*.dbclient-js": "javascript",
+        "command.h": "c",
+        "mk_menu.h": "c",
+        "math.h": "c"
+    }
+}

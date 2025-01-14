@@ -3,7 +3,7 @@
 
 #include "stm32f10x.h"
 
-#define SI24R1_debug				0
+#define SI24R1_debug				1
 #define SPIT_FLAG_TIMEOUT			((uint32_t)0x10000)
 #define SI24R1_INFO(fmt,arg...)		printf("<<-SI24R1-INFO->> "fmt"\n",##arg)
 #define SI24R1_ERROR(fmt,arg...)	printf("<<-SI24R1-ERROR->> "fmt"\n",##arg)

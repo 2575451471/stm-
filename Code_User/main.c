@@ -73,7 +73,7 @@ int main(void)
 	}
 	//-----------------------------------------
 	SI24R1_Mode_NOACK(RX_MODE); // 设置SI24R1为无应答接收模式
-
+LCD_ShowString(0, 96, (u8 *)"ok???", BLACK, WHITE, 24, 0);
 	while (1)
 	{
 		// 注释掉的代码块
@@ -85,16 +85,17 @@ int main(void)
  		if (One_Ms_Timing == 1)
 		{
 			One_Ms_Timing = 0;
-			RF2G4_KEY_Scan_JX();  // 扫描2.4G按键
-			ADC1_Value_average(); // 计算ADC1的平均值
+			//RF2G4_KEY_Scan_JX();  // 扫描2.4G按键
+			//ADC1_Value_average(); // 计算ADC1的平均值
 		}
 //------------------------------------------------------------------
 
 // 射频发送(50ms发射一帧数据)
 #if TX_MODE_1
-		final_menu(); // 调用final_menu函数
-//		test_tx();
-//		delay_ms(1);
+//		final_menu(); // 调用final_menu函数
+		test_tx();
+		delay_ms(1);
+		
 #else
 		test_show(); // 调用test_show函数
 		if (!t_flag)

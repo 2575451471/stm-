@@ -1,5 +1,6 @@
 #include "bsp_si24r1.h"
 #include "led.h"
+#include "command.h"
 #include "spi.h"
 
 static __IO uint32_t  SPITimeout = SPIT_FLAG_TIMEOUT;
@@ -236,11 +237,10 @@ void SI24R1_Mode_NOACK(uint8_t Mode)
 	SI24R1_InitStruct.ADR_WIDTH = 0x03;			// 5位接收地址
     SI24R1_InitStruct.RX_ADDR_Px = RX_ADDR_P0;	// 接收通道0
     SI24R1_InitStruct.EN_RXADDR_Px = 0x01;		// 使能接收通道0
-    SI24R1_InitStruct.RF_CHANNEL = 60;			// 射频频道选择2504MHz
+    SI24R1_InitStruct.RF_CHANNEL = 40;			// 射频频道选择2440MHz
     SI24R1_InitStruct.RX_PW_Px = RX_PW_P0;		// 选择设置接收通道0负载数据宽度
-    SI24R1_InitStruct.RF_SET = 0x27;			// 传输速率功率设置，2Mbps 7dbm
+    SI24R1_InitStruct.RF_SET = 0x0f;			// 传输速率功率设置，2Mbps 7dbm
     SI24R1_InitStruct.RF_FEATURE = 0x01;		// 使能NOACK
-    SI24R1_InitStruct.SI24R1_CONFIG = 0x0f;		// CRC使能，16位CRC校验，上电，接收模式
 	
 	//CE = 0
     SI24R1_CE_Clr();
@@ -502,10 +502,12 @@ void data_transfer(u8 change_num,u8 mode,double data_1,u16 data_2,u16 data_3)
     }
     
 }
-
+uint8_t tx_flag=0x00;
 /*made by 燊楽*/
 void test_tx(void)
 {
+
+	LCD_ShowIntNum(0, 16 * (2 + 2), tx_flag+0x50, 3, BLACK, WHITE, 16);
     //SI24R1_Mode_NOACK(TX_MODE); // 设置SI24R1为无应答接收模式
     SI24R1_Send_Data[0]=1;
     SI24R1_Send_Data[1]=1;
@@ -539,5 +541,6 @@ void test_tx(void)
     SI24R1_Send_Data[29]=1;
     SI24R1_Send_Data[30]=1;
     SI24R1_Send_Data[31]=1;
-    SI24R1_TxPacket(SI24R1_Send_Data);
+    tx_flag=SI24R1_TxPacket(SI24R1_Send_Data);
+	LCD_ShowIntNum(0, 16 * (2 + 2), tx_flag+0x60, 3, BLACK, WHITE, 16);
 }
